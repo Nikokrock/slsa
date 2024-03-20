@@ -20,6 +20,11 @@ to recognize progress made in one aspect of security without blocking on an
 unrelated aspect. Tracks also allow the SLSA spec to evolve: we can add more
 tracks without invalidating previous levels.
 
+> Note: The [previous version] of the specification used a single unnamed track,
+> SLSA 1–4.
+
+## Build track
+
 | Build Levels | Requirements | Focus
 | ----------- | ------------ | -----
 | [Build L0]  | (none)       | (n/a)
@@ -36,10 +41,6 @@ tracks without invalidating previous levels.
 
 <!-- For comparison: a future Build L4's focus might be reproducibility or
 hermeticity or completeness of provenance -->
-
-> Note: The [previous version] of the specification used a single unnamed track,
-> SLSA 1–4. For version 1.0 the Source aspects were removed to focus on the
-> Build track. A Source track may be added in [future versions].
 
 ## Build track
 
@@ -237,6 +238,17 @@ All of [Build L2], plus:
 
 </dl>
 
+## Source Track
+
+| Source Levels | Requirements | Focus
+| ----------- | ------------ | -----
+| [Source L0] | (none) | (n/a)
+| [Source L1] | Version control | Basic project hygiene
+| [Source L2] | Strong authentication, Retained history, Verified timestamps | Change attribution
+| [Source L3] | Code review, Different persons | Change authorization
+
+
+
 ### Source L0: No guarantees
 
 <dl class="as-table">
@@ -269,8 +281,9 @@ Organizations that are unwilling or unable to host their source on a version con
 
 -   **[Change history]** There exists a record of the history of changes that went into the revision. Each change MUST contain:
     -   The immutable reference to the new revision
-    -   The identities of the uploader, reviewers (if any), and submitter/merger (if different to the uploader)
-    -   Timestamps of the reviews (if any) and submission
+    -   The identities of the submitter, reviewers (if any), and merger (if different to the uploader)
+    -   Timestamp of the reviews (if any)
+    -   Timestamp of applying the change
     -   The change description/justification
     -   The content of the change
     -   The parent revisions.
